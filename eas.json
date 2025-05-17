@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 16.1.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "managed": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "env": {
+        "EXPO_NO_CODEGEN": "1",
+        "RCT_NEW_ARCH_ENABLED": "0",
+        "NODE_OPTIONS": "--max_old_space_size=8192",
+        "CI": "1"
+      },
+      "cache": {
+        "disabled": true
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,4 +1,79 @@
 {
-  "name": "FetchQuest",
-  "displayName": "FetchQuest"
+  "expo": {
+    "name": "FetchQuest",
+    "slug": "fetchquest",
+    "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/YOUR-PROJECT-ID"
+    },
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fetchquest.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "FetchQuest needs your location to show you nearby quests and supply runs.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "FetchQuest needs your location to show you nearby quests and supply runs.",
+        "UIBackgroundModes": ["location"]
+      },
+      "config": {
+        "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.fetchquest.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "react-native-gesture-handler",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow FetchQuest to use your location to show nearby quests."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "scheme": "fetchquest",
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    },
+    "newArchEnabled": true
+  }
 }

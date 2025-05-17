@@ -1,0 +1,35 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Handle various file formats
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+*.json text
+*.md text
+*.css text
+*.scss text
+*.html text
+*.xml text
+*.gradle text
+*.properties text
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Shell scripts should always use LF line endings
+*.sh text eol=lf
+gradlew text eol=lf
+
+# Windows batch files should use CRLF
+*.bat text eol=crlf

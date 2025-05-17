@@ -1,0 +1,13 @@
+cat > patches/react-native+0.73.2.patch << 'EOF'
+diff --git a/node_modules/react-native/scripts/generate-codegen-artifacts.js b/node_modules/react-native/scripts/generate-codegen-artifacts.js
+index 478b6f0..b7e1a6e 100644
+--- a/node_modules/react-native/scripts/generate-codegen-artifacts.js
++++ b/node_modules/react-native/scripts/generate-codegen-artifacts.js
+@@ -12,7 +12,7 @@
+ const executor = require('./codegen/generate-artifacts-executor');
+ 
+ executor.execute(process.argv.slice(2), () => {
+-  executor.generateSchemaType(process.argv.slice(2));
++  // Skip generating schema types to avoid the error
+ });
+EOF
