@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { colors } from '@/constants/colors';
 import '@/config/firebase';
 import { FirebaseAuthProvider } from '@/components/FirebaseAuthProvider';
+import { AppWrapper } from '@/components/AppWrapper';
 
 // Suppress warning only in Expo Go (Bridgeless)
 if (__DEV__ && Platform.OS === 'ios') {
@@ -30,26 +31,28 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <FirebaseAuthProvider>
-        <SafeAreaProvider>
-          <StatusBar style="dark" />
-          <Stack
-            screenOptions={{
-              headerStyle: { backgroundColor: colors.background },
-              headerTintColor: colors.text,
-              headerShadowVisible: false,
-              contentStyle: { backgroundColor: colors.background },
-              animation: 'slide_from_right',
-              headerTitleAlign: 'center',
-              title: '',
-            }}
-          >
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" options={{ title: 'Oops!' }} />
-            <Stack.Screen name="test-verification" options={{ title: 'Test Verification' }} />
-          </Stack>
-        </SafeAreaProvider>
-      </FirebaseAuthProvider>
+      <AppWrapper>
+        <FirebaseAuthProvider>
+          <SafeAreaProvider>
+            <StatusBar style="dark" />
+            <Stack
+              screenOptions={{
+                headerStyle: { backgroundColor: colors.background },
+                headerTintColor: colors.text,
+                headerShadowVisible: false,
+                contentStyle: { backgroundColor: colors.background },
+                animation: 'slide_from_right',
+                headerTitleAlign: 'center',
+                title: '',
+              }}
+            >
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" options={{ title: 'Oops!' }} />
+              <Stack.Screen name="test-verification" options={{ title: 'Test Verification' }} />
+            </Stack>
+          </SafeAreaProvider>
+        </FirebaseAuthProvider>
+      </AppWrapper>
     </GestureHandlerRootView>
   );
 }
