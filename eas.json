@@ -4,6 +4,30 @@
     "appVersionSource": "remote"
   },
   "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "testflight": {
+      "distribution": "store",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "env": {
+        "EXPO_NO_CODEGEN": "1",
+        "RCT_NEW_ARCH_ENABLED": "0",
+        "NODE_OPTIONS": "--max_old_space_size=8192"
+      }
+    },
     "managed": {
       "distribution": "internal",
       "ios": {

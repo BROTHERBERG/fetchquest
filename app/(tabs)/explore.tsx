@@ -212,14 +212,29 @@ export default function ExploreScreen() {
         <Text style={styles.testButtonText}>Test Task Verification</Text>
       </TouchableOpacity>
       
-      {/* Category List */}
+      {/* Category List - Direct implementation to bypass CategoryList component */}
       <View style={styles.categoryContainer}>
-        <CategoryList 
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={handleCategorySelect}
-          hideLabels={true}
-        />
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoriesScrollContent}
+        >
+          {categories.map((category) => {
+            const isSelected = selectedCategory === category.id;
+            
+            return (
+              <TouchableOpacity
+                key={category.id}
+                style={[styles.categoryButton, isSelected && styles.selectedCategoryButton]}
+                onPress={() => handleCategorySelect(category.id)}
+              >
+                <View style={[styles.categoryCircle, { backgroundColor: category.color + '20' }]}>
+                  <View style={[styles.categoryDot, { backgroundColor: category.color }]} />
+                </View>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
       </View>
 
       {/* View Toggle */}
@@ -523,5 +538,29 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
+  },
+  categoriesScrollContent: {
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  categoryButton: {
+    padding: 8,
+    borderRadius: 16,
+    marginHorizontal: 4,
+  },
+  selectedCategoryButton: {
+    backgroundColor: colors.primaryLight,
+  },
+  categoryCircle: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  categoryDot: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
   },
 });

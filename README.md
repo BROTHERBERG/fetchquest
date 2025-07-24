@@ -66,12 +66,71 @@ This is one way to run your app — you can also build it directly from Android 
 
 Now that you have successfully run the app, let's make changes!
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
 
 When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
 - **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
 - **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+
+# TestFlight Deployment
+
+To prepare and submit FetchQuest to TestFlight for testing, follow these steps:
+
+## Prerequisites
+
+1. Ensure you have an Apple Developer account
+2. Set up your app in App Store Connect
+3. Configure your `.env` file with all required environment variables
+
+## Testing Critical Paths
+
+Before building for TestFlight, run the critical path test script to make sure all essential functionality is working:
+
+```sh
+node scripts/test-critical-path.js
+```
+
+## Building for TestFlight
+
+We've included a convenient build script for TestFlight. Simply run:
+
+```sh
+./scripts/build-testflight.sh
+```
+
+This will:
+1. Install all dependencies
+2. Set up CocoaPods for iOS
+3. Verify environment variables
+4. Trigger an EAS build for TestFlight
+
+## Submitting to TestFlight
+
+Once the build is complete, you can submit it to TestFlight with:
+
+```sh
+eas submit -p ios --latest
+```
+
+## Manual Build Process
+
+If you prefer to run the steps manually:
+
+1. Install EAS CLI if not already installed:
+   ```sh
+   npm install -g eas-cli
+   ```
+
+2. Build the app:
+   ```sh
+   eas build --platform ios --profile testflight
+   ```
+
+3. Submit to TestFlight:
+   ```sh
+   eas submit -p ios --latest
+   ```
 
 ## Congratulations! :tada:
 

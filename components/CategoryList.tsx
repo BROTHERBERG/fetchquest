@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { LucideIcon } from 'lucide-react-native';
 import { colors } from '@/constants/colors';
 import { typography } from '@/styles/typography';
+import { LucideIcon } from 'lucide-react-native';
 
 type Category = {
   id: string;
   name: string;
-  icon: LucideIcon;
   color: string;
+  icon?: React.ComponentType<any> | React.ReactNode;
 };
 
 type CategoryListProps = {
@@ -24,6 +24,35 @@ export const CategoryList = ({
   onSelectCategory,
   hideLabels = false 
 }: CategoryListProps) => {
+  // Function to safely render the icon
+  const renderIcon = (category: Category) => {
+    if (!category.icon) {
+      // If no icon, just show the color circle
+      return <View style={[styles.colorCircle, { backgroundColor: category.color }]} />;
+    }
+    
+    try {
+      // If the icon is a component type (like from lucide-react)
+      if (typeof category.icon === 'function') {
+        const IconComponent = category.icon as React.ComponentType<any>;
+        return (
+          <IconComponent 
+            size={24} 
+            color={category.color} 
+            style={styles.iconStyle}
+          />
+        );
+      }
+      
+      // If it's a React element, just return it
+      return category.icon;
+    } catch (error) {
+      // Fallback if rendering fails
+      console.warn('Error rendering icon:', error);
+      return <View style={[styles.colorCircle, { backgroundColor: category.color }]} />;
+    }
+  };
+
   return (
     <ScrollView 
       horizontal 
@@ -32,7 +61,6 @@ export const CategoryList = ({
     >
       {categories.map((category) => {
         const isSelected = selectedCategory === category.id;
-        const Icon = category.icon;
         
         return (
           <TouchableOpacity
@@ -41,7 +69,7 @@ export const CategoryList = ({
             onPress={() => onSelectCategory(category.id)}
           >
             <View style={[styles.iconContainer, { backgroundColor: category.color + '20' }]}>
-              <Icon size={20} color={category.color} />
+              {renderIcon(category)}
             </View>
             
             {!hideLabels && (
@@ -77,6 +105,15 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  colorCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+  },
+  iconStyle: {
+    width: 24,
+    height: 24,
   },
   categoryText: {
     ...typography.caption,

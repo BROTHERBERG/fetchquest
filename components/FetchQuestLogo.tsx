@@ -14,7 +14,7 @@ const FetchQuestLogo = ({
   color = '#1E40AF' 
 }: FetchQuestLogoProps) => {
   return (
-    <View style={[styles.container, { width, height }]}>
+    <View style={[styles.container, { width, height, marginTop: 8 }]}>
       <Svg 
         width="100%" 
         height="100%" 

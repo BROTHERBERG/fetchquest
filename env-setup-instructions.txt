@@ -1,0 +1,39 @@
+# FetchQuest Environment Variables Setup
+
+Please update your .env file with the following content, replacing the placeholder values with your actual API keys:
+
+```
+# Firebase Configuration
+EXPO_PUBLIC_FIREBASE_API_KEY=your-api-key
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+EXPO_PUBLIC_FIREBASE_APP_ID=your-app-id
+
+# Google Maps API Keys
+EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY=your-ios-api-key
+EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY=your-android-api-key
+
+# Additional Configuration
+# Add any other environment variables your app needs here
+```
+
+## How to Get API Keys
+
+1. For Firebase API keys:
+   - Go to your Firebase console (https://console.firebase.google.com/)
+   - Select your project
+   - Go to Project Settings > General
+   - Under "Your apps", find your app and click "Config"
+   - Copy the values from the Firebase config object
+
+2. For Google Maps API Keys:
+   - Go to Google Cloud Console (https://console.cloud.google.com/)
+   - Create or select a project
+   - Enable the Maps SDK for iOS and/or Android
+   - Go to APIs & Services > Credentials
+   - Create an API key for each platform (iOS and Android)
+   - Add restrictions to the API keys (recommended):
+     - For iOS: Restrict to iOS apps and add your bundle ID (com.fetchquest.app)
+     - For Android: Restrict to Android apps and add your package name (com.fetchquest.app) 

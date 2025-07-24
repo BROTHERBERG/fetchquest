@@ -2,7 +2,19 @@ import 'dotenv/config';
 import { ExpoConfig } from '@expo/config-types';
 
 const config: ExpoConfig = {
-  plugins: ['expo-font'],
+  plugins: [
+    'expo-font',
+    'expo-location',
+    'expo-image-picker',
+    [
+      'expo-build-properties',
+      {
+        ios: {
+          useFrameworks: 'static',
+        },
+      },
+    ],
+  ],
   name: 'FetchQuest',
   slug: 'fetchquest',
   version: '1.0.0',
@@ -20,7 +32,18 @@ const config: ExpoConfig = {
     bundleIdentifier: 'com.fetchquest.app',
     buildNumber: "1",
     config: {
-      usesNonExemptEncryption: false
+      usesNonExemptEncryption: false,
+      googleMapsApiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_IOS_API_KEY,
+    },
+    infoPlist: {
+      NSLocationWhenInUseUsageDescription: "FetchQuest needs your location to show nearby tasks and verify task completion.",
+      NSLocationAlwaysAndWhenInUseUsageDescription: "FetchQuest needs your location to show nearby tasks and verify task completion.",
+      NSCameraUsageDescription: "FetchQuest needs camera access to allow you to take photos for task verification.",
+      NSPhotoLibraryUsageDescription: "FetchQuest needs access to your photos to upload them for task verification.",
+      UIBackgroundModes: ["location", "fetch"],
+      NSAppTransportSecurity: {
+        NSAllowsArbitraryLoads: true
+      }
     }
   },
   android: {
@@ -29,6 +52,18 @@ const config: ExpoConfig = {
       backgroundColor: '#ffffff',
     },
     package: 'com.fetchquest.app',
+    permissions: [
+      "ACCESS_COARSE_LOCATION",
+      "ACCESS_FINE_LOCATION",
+      "CAMERA",
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE"
+    ],
+    config: {
+      googleMaps: {
+        apiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY
+      }
+    }
   },
   web: {
     favicon: './assets/images/favicon.png',

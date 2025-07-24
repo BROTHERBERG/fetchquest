@@ -44,7 +44,9 @@ export default function TabsLayout() {
         },
         headerStyle: {
           backgroundColor: colors.background,
-          height: 50,
+          height: 60,
+          borderBottomWidth: 1,
+          borderBottomColor: colors.border,
         },
         headerTitleStyle: {
           color: colors.text,
@@ -52,7 +54,7 @@ export default function TabsLayout() {
         },
         headerTitle: () => (
           <View style={styles.headerLogoContainer}>
-            <FetchQuestLogo width={160} height={35} color={colors.primary} />
+            <FetchQuestLogo width={160} height={35} color="#6366F1" />
           </View>
         ),
         headerTitleAlign: 'center',
@@ -124,9 +126,11 @@ export default function TabsLayout() {
 
 const styles = StyleSheet.create({
   headerLogoContainer: {
-    paddingTop: 0,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
     paddingBottom: 0,
-    height: 35,
   },
   createButton: {
     top: -15,

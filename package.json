@@ -8,16 +8,18 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest",
-    "fix-codegen": "node ./scripts/fix-codegen.js"
+    "fix-codegen": "node ./scripts/fix-codegen.js",
+    "test-critical": "node ./scripts/test-critical-path.js",
+    "prepare-testflight": "node ./scripts/test-critical-path.js && ./scripts/build-testflight.sh"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/datetimepicker": "8.2.0",
-    "@react-native-community/slider": "^4.5.6",
+    "@react-native-community/slider": "4.5.5",
     "@react-native/js-polyfills": "^0.74.0",
-    "@react-navigation/native-stack": "^7.3.8",
+    "@react-navigation/native-stack": "^7.2.0",
     "expo": "~52.0.0",
     "expo-build-properties": "~0.13.2",
     "expo-constants": "~17.0.8",
@@ -30,7 +32,7 @@
     "expo-location": "~18.0.10",
     "expo-modules-core": "~2.2.3",
     "expo-network": "~7.0.5",
-    "expo-router": "~4.0.17",
+    "expo-router": "~4.0.21",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
     "firebase": "^10.7.1",
@@ -45,7 +47,8 @@
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.6",
-    "zustand": "^4.4.7"
+    "zustand": "^4.4.7",
+    "react-native-svg": "15.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -53,6 +56,8 @@
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
     "@babel/plugin-transform-template-literals": "^7.26.8",
+    "@expo/config-types": "^53.0.4",
+    "@types/node": "^20.13.5",
     "@types/react": "~18.2.45",
     "@types/react-native": "^0.72.8",
     "babel-plugin-module-resolver": "^5.0.0",

@@ -1,16 +1,16 @@
+import React from 'react';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { tasks as mockTasks } from '@/mocks/tasks';
 import { categories } from '@/constants/categories';
 import { Task } from '@/types';
-import { LucideIcon } from 'lucide-react-native';
 
 interface Category {
   id: string;
   name: string;
-  icon: LucideIcon;
   color: string;
+  icon?: React.ComponentType<any> | React.ReactNode;
 }
 
 interface TaskState {
